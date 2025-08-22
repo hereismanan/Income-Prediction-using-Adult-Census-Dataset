@@ -130,4 +130,33 @@ joblib.dump(dt_pipeline,'decision_tree_pipeline.pkl')
 joblib.dump(rf_pipeline,'random_forest_pipeline.pkl')
 joblib.dump(xgb_pipeline,'xgboost_pipeline.pkl')
 
+
 print("All model saveds")
+
+import joblib
+import pandas as pd
+
+# Load saved model (you can switch to Decision Tree / XGBoost)
+model = joblib.load("xgboost_pipeline.pkl")
+
+user_data = {
+    'age': 37,
+    'workclass': 'Private',
+    'education': 'Bachelors',
+    'education-num': 13,
+    'marital-status': 'Married-civ-spouse',
+    'occupation': 'Exec-managerial',
+    'relationship': 'Husband',
+    'race': 'White',
+    'sex': 'Male',
+    'capital-gain': 0,
+    'capital-loss': 0,
+    'hours-per-week': 45,
+    'native-country': 'United-States'
+}
+
+user_df = pd.DataFrame([user_data])
+
+pred = model.predict(user_df)[0]
+
+print("Predicted Income:", ">50K" if pred == 1 else "<=50K")
