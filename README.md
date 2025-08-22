@@ -73,4 +73,3 @@ This project uses the **Adult Census Income dataset** from the UCI Machine Learn
 - Scikit-learn Documentation
 
 ---
-EOL
